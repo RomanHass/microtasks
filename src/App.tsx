@@ -1,32 +1,60 @@
-import React, { useState } from 'react';
+import React, {MouseEvent} from 'react';
 import './App.css';
-import { NewComponent } from './NewComponent';
-// import { Header } from './site/Header';
-// import { Body } from './site/Body';
-// import { Footer } from './site/Footer';
+import { Button } from './components/Button';
 
 function App() {
 
-  // BLL
-  const [students, setStudents] = useState([
-    {id: 1, name: "James", age: 8},
-    {id: 2, name: "Robert", age: 18},
-    {id: 3, name: "John", age: 28},
-    {id: 4, name: "Michael", age: 38},
-    {id: 5, name: "William", age: 48},
-    {id: 6, name: "David", age: 58},
-    {id: 7, name: "Richard", age: 68},
-    {id: 8, name: "Joseph", age: 78},
-    {id: 9, name: "Thomas", age: 88},
-    {id: 10, name: "Charles", age: 98},
-    {id: 11, name: "Christopher", age: 100},
-  ]);
+  // const myFirstSubscriber = (event: MouseEvent<HTMLButtonElement>) => {
+  //   console.log("Hello, I'm Roman");
+  // };
 
-  // UI
+  // const mySecondSubscriber = (event: MouseEvent<HTMLButtonElement>) => {
+  //   console.log("Hello, I'm Ivan");
+  // };
+
+  // const onClickHandler = (name: string) => {
+  //   console.log(`Hello my name is ${name}`);
+  // };
+
+  // const foo1 = () => {
+  //   console.log(100200);
+  // };
+  
+  // const foo2 = (num: number) => {
+  //   console.log(num);
+  // };
+
+  const Button1Foo = (subscriber: string, age: number) => {
+    console.log(subscriber, age);
+  };
+
+  const Button2Foo = (subscriber: string) => {
+    console.log(subscriber)
+  };
+
+  const StupidButton = () => {
+    console.log("I'm a stupid button");
+  };
+
   return (
-    <NewComponent students={students}/>
-  );
+    <div className="App">
+      {/* <button onClick={() => {console.log('Hello')}}>MyYouTubeChannel-1</button> */}
+      {/* <button onClick={() => onClickHandler("Roman")}>MyYouTubeChannel-1</button> */}
+      {/* <button onClick={() => onClickHandler("Ivan")}>MyYouTubeChannel-2</button> */}
 
+      {/* <button onClick={foo1}>1</button> */}
+      {/* <button onClick={() => foo2(100200)}>2</button> */}
+
+
+      {/* <button>MyYouTubeChannel-1</button> */}
+      <Button name="MyYouTubeChannel-1" callBack={() => Button1Foo("Roman", 21)} />
+      {/* <button>MyYouTubeChannel-2</button> */}
+      <Button name="MyYouTubeChannel-2" callBack={() => Button2Foo("Ivan")} />
+
+      <Button name="I'm a stupid button" callBack={StupidButton}/>
+
+    </div>
+  );
 }
 
 export default App;
