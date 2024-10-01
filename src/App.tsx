@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Filter } from './Filter';
+import { FullInput } from './components/FullInput';
+import { Input } from './components/Input';
+import { Btn } from './components/Btn';
 
 export type FilterValuesType = 'all' | 'ruble' | 'dollar';
 
@@ -12,20 +14,38 @@ export type MoneyType = {
 
 function App() {
 
-  const [money, setMoney] = useState<Array<MoneyType>>([
-    {banknote: "dollar", nominal: 100, number: "a123456789"},
-    {banknote: "dollar", nominal: 50, number: "b123456789"},
-    {banknote: "ruble", nominal: 100, number: "c123456789"},
-    {banknote: "dollar", nominal: 100, number: "d123456789"},
-    {banknote: "dollar", nominal: 50, number: "e123456789"},
-    {banknote: "ruble", nominal: 100, number: "f123456789"},
-    {banknote: "dollar", nominal: 50, number: "j123456789"},
-    {banknote: "ruble", nominal: 50, number: "h123456789"}
-  ]);
+  const [message, setMessage] = useState([
+    {message: 'message1'},
+    {message: 'message2'},
+    {message: 'message3'},
+    {message: 'message4'},
+  ])
+
+  const [title, setTitle] = useState<string>('');
+
+  const addMessage = (title: string) => {
+    let newMessage = {message: title};
+    setMessage([newMessage, ...message]);
+  };
+
+  const callBackButtonHandler = () => {
+    addMessage(title)
+    setTitle('');
+  };
 
   return (
-    <div className='App'>
-      <Filter money={money} />
+    <div className="App">
+
+      {/* <FullInput addMessage={addMessage}/> */}
+
+      <Input title={title} setTitle={setTitle} />
+      <Btn title="+" callBack={callBackButtonHandler} />
+
+      {message.map((el, index) => {
+        return (
+          <div key={index}>{el.message}</div>
+        )
+      })}
     </div>
   );
 }
